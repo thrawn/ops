@@ -1,0 +1,17 @@
+$ORIGIN .
+$TTL 300	; 5 minutes
+rumblefish		IN SOA	ns1.rumblefish. mike.rumblefish. (
+				2013081202 ; serial
+				300        ; refresh (5 minutes)
+				300        ; retry (5 minutes)
+				300        ; expire (5 minutes)
+				300        ; minimum (5 minutes)
+				)
+			NS	ns1.rumblefish.
+$ORIGIN rumblefish.
+dns			CNAME	private
+john			A	10.0.71.189
+ns1			A	10.0.71.193
+private			A	10.0.71.193
+public			A	10.0.70.174
+puppet			A	10.0.71.193

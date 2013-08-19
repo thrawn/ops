@@ -1,0 +1,14 @@
+$TTL    300
+@       IN      SOA     ns1.hoover. mike.hoover. (
+                     2013080108     ; Serial
+                         300        ; Refresh
+                         300        ; Retry
+                         300        ; Expire
+                         300 )      ; Negative Cache TTL
+;
+@                IN      NS     ns1.hoover.
+ns1		IN	A	10.0.71.193
+private		IN	A	10.0.71.193
+dns		IN	CNAME	private.hoover.
+public		IN	A	10.0.70.174
+puppet		IN	A	10.0.71.193

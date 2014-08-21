@@ -1,0 +1,83 @@
+set nocompatible
+set paste
+set autoindent
+set modeline
+set backspace=indent,eol,start  "bs:    allows you to backspace over the listed character types
+set linebreak                   "lbr:   causes vim to not wrap text in the middle of a word
+set wrap
+set nobackup
+set expandtab                   "et:    uses spaces instead of tab characters
+set smarttab                    "sta:   helps with backspacing because of expandtab
+set softtabstop=4               "ts:    number of spaces that a tab counts for
+set tabstop=4
+set shiftwidth=4                "sw:    number of spaces to use for autoindent
+set shiftround                  "sr:    rounds indent to a multiple of shiftwidth
+set encoding=utf-8
+" set relativenumber              "rnu:   show line numbers relative to the current line; <leader>u to toggle
+set nonumber
+set showmode                    "smd:   shows current vi mode in lower left
+set cursorline                  "cul:   highlights the current line
+set showcmd                     "sc:    shows typed commands
+set cmdheight=2                 "ch:    make a little more room for error messages
+set sidescroll=2                "ss:    only scroll horizontally little by little
+set scrolloff=1                 "so:    places a line between the current line and the screen edge
+set sidescrolloff=2             "siso:  places a couple columns between the current column and the screen edge
+set laststatus=2                "ls:    makes the status bar always visible
+set ttyfast                     "tf:    improves redrawing for newer computers
+set history=200                 "hi:    number of search patterns and ex commands to remember
+                                "       (also used by viminfo below for /, :, and @ options)
+set viminfo='200                "vi:    For a nice, huuuuuge viminfo file
+let &t_Co=256
+
+
+" Status Line {  
+        set laststatus=2                             " always show statusbar  
+        set statusline=  
+        set statusline+=%-10.3n\                     " buffer number  
+        set statusline+=%f\                          " filename   
+        set statusline+=%h%m%r%w                     " status flags  
+        set statusline+=\[%{strlen(&ft)?&ft:'none'}] " file type  
+        set statusline+=%=                           " right align remainder  
+        set statusline+=0x%-8B                       " character value  
+        set statusline+=%-14(%l,%c%V%)               " line, character  
+        set statusline+=%<%P                         " file position  
+"} 
+
+" Color {{{
+"   All coloring options are for the non-GUI Vim (see :help cterm-colors).
+
+" Make listchars (much) more noticable.
+au ColorScheme * hi SpecialKey ctermfg=7 ctermbg=1
+
+" A nice, minimalistic tabline.
+au ColorScheme * hi TabLine cterm=bold,underline ctermfg=8 ctermbg=none
+au ColorScheme * hi TabLineSel cterm=bold ctermfg=0 ctermbg=7
+au ColorScheme * hi TabLineFill cterm=bold ctermbg=none
+
+" Black ColorColumn to not catch the eye more than is necessary
+au ColorScheme * hi ColorColumn ctermbg=0
+
+" Makes the current line stand out with bold and in the numberline
+au ColorScheme * hi CursorLine cterm=bold
+au ColorScheme * hi LineNr cterm=bold ctermfg=0 ctermbg=none
+
+" Match the Sign column to the number column
+au ColorScheme * hi SignColumn cterm=bold ctermfg=0 ctermbg=none
+
+" Refresh busted syntax highlighting (this happens too often)
+map <F12> :syntax sync fromstart<cr>
+
+" syntax enable
+" colorscheme desert
+syntax on
+syntax enable
+filetype indent plugin on
+" set background=light
+" colorscheme desert256
+colorscheme codeschool
+
+" Uncomment the following to have Vim jump to the last position when
+" reopening a file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+  endif
